@@ -1,7 +1,11 @@
 #pragma once
 
 #include "../common/keys.h"
+#include "../config.h"
 
+#ifdef WIDE_MODE
+
+#else
 /* Symbol
  * ,-----------------------------------------------------------------------------------.
  * |   (  |   ~  |   *  |   &  |   )  |      |      | Home |  Up  |  End | PgUp |      |
@@ -19,3 +23,4 @@
   XXXXXXX, KC_LBRC, KC_HASH, KC_AT,   KC_EXLM, KC_RBRC, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   _______, _______, _______, _______, ADJUST, LT_BSLS, _______, _______, _______, _______, _______, _______ \
 )
+#endif

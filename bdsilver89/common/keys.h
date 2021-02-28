@@ -29,7 +29,6 @@
 #define MT_DOWN MT(MOD_RGUI, KC_DOWN) 
 #define MT_LEFT MT(MOD_RALT, KC_LEFT) 
 
-
 // temporary
 #define CNTR_TL OSM(MOD_LALT | MOD_LCTL)
 #define CNTR_TR OSM(MOD_LGUI | MOD_LCTL)

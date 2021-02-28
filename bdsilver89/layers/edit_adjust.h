@@ -1,7 +1,11 @@
 #pragma once
 
 #include "../common/keys.h"
+#include "../config.h"
 
+#ifdef WIDE_MODE
+
+#else
 /* Edit
  * ,-----------------------------------------------------------------------------------.
  * |      |      | Close| Find |      |      |      |      |      |      |      |      |
@@ -19,21 +23,23 @@
   XXXXXXX, UNDO,    CUT,     COPY,    PASTE,   XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, BL_DEC,  XXXXXXX, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 )
+#endif
+
 
 /* Adjust
  * ,-----------------------------------------------------------------------------------.
- * |      | Reset|      |      |      |      |      |      |CModDH|      |      |      |
+ * |      | Reset|      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      | Sleep|      |Aud on|Audoff|AGnorm|AGswap|Qwerty|Colemk|Dvorak|Workmn|      |
+ * |      | Sleep|      |Aud on|Audoff|AGnorm|AGswap|Qwerty|Workmn|Dvorak|      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      | Wake |      |      |      |      |      |      |      |      |      |      |
+ * |      | Wake |      |      |      |      |      |Colemk|CModDH|CMDHM |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      | Lock |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 #define ADJUST_LAYOUT LAYOUT( \
   XXXXXXX, RESET,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, CMODDH,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-  XXXXXXX, KC_SLEP, XXXXXXX, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, DVORAK,  WORKMAN, XXXXXXX, \
-  XXXXXXX, KC_WAKE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  XXXXXXX, KC_SLEP, XXXXXXX, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  WORKMAN, DVORAK,  XXXXXXX, XXXXXXX, \
+  XXXXXXX, KC_WAKE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, COLEMAK, CMODDH,  CMODDHM, XXXXXXX, XXXXXXX, \
   _______, LOCK,    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 )

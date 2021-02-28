@@ -1,7 +1,11 @@
 #pragma once
 
 #include "../common/keys.h"
+#include "../config.h"
 
+#ifdef WIDE_MODE
+
+#else
 /* Mouse
  * ,-----------------------------------------------------------------------------------.
  * |      |      |      |      |      |      |      | WLeft|  Up  |WRight| WUp  |      |
@@ -19,3 +23,4 @@
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
 )
+#endif

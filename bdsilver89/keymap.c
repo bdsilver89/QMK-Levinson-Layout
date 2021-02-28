@@ -8,14 +8,16 @@
 #define _QWERTY 0
 #define _COLEMAK 1
 #define _DVORAK 2
-#define _LOWER 3
-#define _RAISE 4
+#define _WORKMAN 3
+#define _LOWER 4
+#define _RAISE 5
 #define _ADJUST 16
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   COLEMAK,
   DVORAK,
+  WORKMAN,
   LOWER,
   RAISE,
   ADJUST,
@@ -77,6 +79,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ADJUST,  KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
 ),
 
+/* Workman
+ * ,-----------------------------------------------------------------------------------.
+ * | Tab  |   Q  |   D  |   R  |   W  |   B  |   J  |   F  |   U  |   P  |   ;  | Bksp |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * | Esc  |   A  |   S  |   H  |   T  |   G  |   Y  |   N  |   E  |   O  |   I  |  "   |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * | Shift|   Z  |   X  |   M  |   C  |   V  |   K  |   L  |   ,  |   .  |   /  |Enter |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |Adjust| Ctrl | Alt  | GUI  |Lower |Space |Space |Raise | Left | Down |  Up  |Right |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_WORKMAN] = LAYOUT_ortho_4x12( \
+  KC_TAB,  KC_Q,    KC_D,    KC_R,    KC_W,    KC_B,    KC_J,    KC_F,    KC_U,    KC_P,    KC_SCLN, KC_BSPC, \
+  KC_ESC,  KC_A,    KC_S,    KC_H,    KC_T,    KC_G,    KC_Y,    KC_N,    KC_E,    KC_O,    KC_I,    KC_SLSH, \
+  KC_LSFT, KC_Z,    KC_X,    KC_M,    KC_C,    KC_V,    KC_K,    KC_L,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
+  ADJUST,  KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+),
+
 /* Lower
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Bksp |
@@ -115,18 +135,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
- * |      |      |      |      |      |      | Reset |      |      |      |      |  Del |
+ * |      |      |      |      |      |      | Reset|      |      |      |      |  Del |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      | Prev | Play | Next | BL+  |      |Qwerty|Colemk|Dvorak|      |      |
- * |------+------+------+------+------|------+------+------+------+------+------|
- * |      | Mute | Vol- | Vol+ | BL-  |      |      |      |      |      |      |
+ * |      | Prev | Play | Next | BL+  |      |      |Qwerty|Colemk|Dvorak|Workmn|      |
+ * |------+------+------+------+------|------+------+------+------+------+------|------|
+ * |      | Mute | Vol- | Vol+ | BL-  |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] =  LAYOUT_ortho_4x12( \
   _______, _______, _______, _______, _______, _______, RESET,   _______, _______, _______, _______, KC_DEL, \
-  _______, KC_MPRV, KC_MPLY, KC_MNXT, BL_INC,  _______, _______, QWERTY,  COLEMAK, DVORAK,  _______, _______, \
+  _______, KC_MPRV, KC_MPLY, KC_MNXT, BL_INC,  _______, _______, QWERTY,  COLEMAK, DVORAK,  WORKMAN, _______, \
   _______, KC_MUTE, KC_VOLD, KC_VOLU, BL_DEC,  _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 )
@@ -138,6 +158,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
 float tone_dvorak[][2]     = SONG(DVORAK_SOUND);
 float tone_colemak[][2]    = SONG(COLEMAK_SOUND);
+float tone_workman[][2]    = SONG(WORKMAN_SOUND);
 #endif
 
 void persistent_default_layer_set(uint16_t default_layer) {
@@ -174,6 +195,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case WORKMAN:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+          PLAT_SONG(tone_workman)
+        #endif
+        persistent_default_layer_set(1UL<<_WORKMAN);
+      }
     case LOWER:
       if (record->event.pressed) {
         layer_on(_LOWER);

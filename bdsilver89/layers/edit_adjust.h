@@ -10,7 +10,7 @@
  * ,-----------------------------------------------------------------------------------.
  * |      |      | Close| Find |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      | All  | Save | Redo |      |      |      | Prev | Play | Next | BL+  |ADJUST|
+ * |      | All  | Save | Redo | Caps |      |      | Prev | Play | Next | BL+  |ADJUST|
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      | Undo |  Cut | Copy | Paste|      |      | Mute | Vol- | Vol+ | BL-  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -19,7 +19,7 @@
  */
 #define EDIT_LAYOUT LAYOUT( \
   XXXXXXX, XXXXXXX, CLOSE,   FIND,    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
-  XXXXXXX, ALL,     SAVE,    REDO,    XXXXXXX, XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, BL_INC,  ADJUST, \
+  XXXXXXX, ALL,     SAVE,    REDO,    KC_CAPS, XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, BL_INC,  ADJUST, \
   XXXXXXX, UNDO,    CUT,     COPY,    PASTE,   XXXXXXX, XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, BL_DEC,  XXXXXXX, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 )
